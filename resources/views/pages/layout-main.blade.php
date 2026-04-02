@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <x-navbar-home />
+  <x-navbar />
 
   {{ $slot }}
 
