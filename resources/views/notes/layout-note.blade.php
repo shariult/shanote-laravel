@@ -12,12 +12,16 @@
   @endif
 </head>
 
-<body>
-  {{ $slot }}
+<body class="bg-slate-50">
+
+  <div class="flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
+    {{ $slot }}
+  </div>
 
   {{-- Footer --}}
   <footer class="py-12 border-t border-slate-200 bg-white text-slate-500 text-center">
-    <p>&copy; 2026 <a href="https://shariul.com" target="_blank" class="underline hover:text-blue-600">Shariul</a>. All
+    <p>&copy; 2026 <a href="https://shariul.com" target="_blank" class="underline hover:text-blue-600">Shariul</a>.
+      All
       rights reserved.</p>
   </footer>
 </body>
