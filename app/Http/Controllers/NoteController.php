@@ -13,8 +13,9 @@ class NoteController extends Controller {
    */
   public function index(): View {
     //
-    $notes = Note::all();
-    return view('notes.index', compact(['notes']));
+    $notes = Note::with('user')->get();
+    $pinnedNotes = Note::where('is_pinned', true)->with('user')->get();
+    return view('notes.index', compact(['notes', 'pinnedNotes']));
   }
 
   /**

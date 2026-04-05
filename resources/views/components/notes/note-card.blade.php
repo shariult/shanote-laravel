@@ -1,10 +1,16 @@
+@props(['note'])
+
 <div
   class="bg-white rounded-3xl border border-slate-200 overflow-hidden flex flex-col group hover:shadow-2xl hover:border-indigo-100 transition-all duration-500">
 
   <!-- Thumbnail (Conditional) -->
   <div class="h-48 overflow-hidden relative">
-    <img src="#" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-    <a href="#">
+    @if ($note->image_path)
+      <img src="{{ $note->image_path }}" alt="{{ $note->title }}"
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+    @endif
+
+    <a href="{{ route('notes.show', $note->id) }}">
       <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
     </a>
   </div>
@@ -14,11 +20,13 @@
     <!-- Author Header -->
     <div class="flex items-center justify-between mb-6">
       <div class="flex items-center space-x-3">
-        <img src="#" class="w-10 h-10 rounded-full ring-2 ring-slate-50" />
-
+        @if ($note->user->profile_image)
+          <img src="{{ $note->user->profile_image }}" alt="{{ $note->user->name }}"
+            class="w-10 h-10 rounded-full ring-2 ring-slate-50" />
+        @endif
         <div>
-          <p class="text-sm font-bold text-slate-900">John Doe</p>
-          <p class="text-[11px] text-slate-400 font-medium">@username</p>
+          <p class="text-sm font-bold text-slate-900">{{ $note->user->name }}</p>
+          <p class="text-[11px] text-slate-400 font-medium">&commat;{{ $note->user->username }}</p>
         </div>
       </div>
 
@@ -32,17 +40,16 @@
 
     <!-- Note Body -->
     <div class="border-l-4 pl-4 mb-4 border-purple-400">
-      <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition"><a href="#">Title
-          of The Notes</a></h3>
-      <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">Lorem ipsum dolor sit amet, consectetur adipisicing
-        elit. Vel eius nisi tempora ipsum nobis alias excepturi! Obcaecati sit eligendi aliquam dicta reprehenderit?
-        Facilis consectetur ullam, at provident quisquam quasi et?</p>
+      <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition"><a
+          href="{{ route('notes.show', $note->id) }}">{{ $note->title }}</a></h3>
+      <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">{{ Str::limit($note->description, 100) }}</p>
     </div>
 
     <!-- Action Footer -->
     <div class="mt-auto pt-6 flex items-center justify-between border-t border-slate-50">
 
-      <a href="#" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 transition">Read Full
+      <a href="{{ route('notes.show', $note->id) }}"
+        class="text-sm font-bold text-indigo-600 hover:text-indigo-800 transition">Read Full
         Note &rarr;</a>
 
       <div class="flex items-center space-x-1 text-slate-400">
