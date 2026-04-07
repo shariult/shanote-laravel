@@ -16,6 +16,7 @@
       <div class="hidden md:flex space-x-8 items-center">
         <a href="#problem" class="text-slate-600 hover:text-indigo-600 transition">The Problem</a>
         <a href="#features" class="text-slate-600 hover:text-indigo-600 transition">Features</a>
+        <a href="{{ url('/notes') }}" class="text-slate-600 hover:text-indigo-600 transition">Notes</a>
         <a href="/login" class="text-slate-600 hover:text-indigo-600 transition">Login</a>
         <a href="/signup"
           class="bg-indigo-600 text-white px-5 py-2 rounded-full font-medium hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">Get
@@ -23,7 +24,7 @@
       </div>
 
       <!-- Mobile Toggle -->
-      <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2">
+      <button x-on:click="mobileMenu = !mobileMenu" class="md:hidden p-2">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path x-show="!mobileMenu" d="M4 6h16M4 12h16m-7 6h7"></path>
           <path x-show="mobileMenu" d="M6 18L18 6M6 6l12 12"></path>

@@ -31,6 +31,18 @@ class NoteController extends Controller {
    */
   public function store(Request $request): RedirectResponse {
     //
+    $validatedData = $request->validate([
+      'title'            => "required|string|max:255",
+      'description'      => "required|string|max:255",
+      'description_long' => "string",
+      'color'            => "string|max:10",
+      'image_path'       => "string|max:255",
+      'file_path'        => "string|max:255",
+      'is_completed'     => "boolean",
+      'is_private'       => "boolean",
+      'is_pinned'        => "boolean",
+    ]);
+    dd($validatedData);
     return redirect()->back();
   }
 
